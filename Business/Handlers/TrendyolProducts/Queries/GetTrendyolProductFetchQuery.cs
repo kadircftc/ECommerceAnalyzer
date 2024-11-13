@@ -24,12 +24,14 @@ namespace Business.Handlers.TrendyolProducts.Queries
         public class GetTrendyolProductFetchQueryHandler : IRequestHandler<GetTrendyolProductFetchQuery, IDataResult<IEnumerable<TrendyolProduct>>>
         {
             private readonly ITrendyolService _trendyolService;
+            private readonly ITrendyolProductLastSocialProofRepository _trendyolSocialService;
             private readonly ITrendyolProductRepository _trendyolRepository;
             private readonly IMediator _mediator;
 
-            public GetTrendyolProductFetchQueryHandler(ITrendyolService trendyolService, ITrendyolProductRepository trendyolRepository, IMediator mediator)
+            public GetTrendyolProductFetchQueryHandler(ITrendyolService trendyolService, ITrendyolProductLastSocialProofRepository trendyolSocialService, ITrendyolProductRepository trendyolRepository, IMediator mediator)
             {
                 _trendyolService = trendyolService;
+                _trendyolSocialService = trendyolSocialService;
                 _trendyolRepository = trendyolRepository;
                 _mediator = mediator;
             }
@@ -50,6 +52,17 @@ namespace Business.Handlers.TrendyolProducts.Queries
                     }
                     else
                     {
+                        _trendyolSocialService.Add(new TrendyolProductLastSocialProof
+                        {
+                            BasketCount = item.BasketCount,
+                            Index = item.PIndex,
+                            ProductId = item.ProductId,
+                            OrderCount = item.OrderCount,
+                            FavoriteCount = item.FavoriteCount,
+                            PageViewCount = item.PageViewCount, 
+                            FetchDate=item.FetchDate
+                        });
+
                         ayniProductId++;
                     }
                 }

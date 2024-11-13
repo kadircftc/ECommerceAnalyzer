@@ -14,5 +14,6 @@ namespace Entities.Concrete
         public int OrderCount { get; set; }
         public int BasketCount { get; set; }
         public int PageViewCount { get; set; }
+        public int Index { get; set; }
     }
 }
