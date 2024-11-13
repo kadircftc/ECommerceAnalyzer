@@ -74,6 +74,8 @@ namespace Business.Services.TrendyolService.Concrete
                             WinnerVariant = baseProduct.WinnerVariant ?? "",
                             PIndex = index,
                             FetchDate=DateTime.Now,
+                            PriceLabelName = baseProduct.Variants[0].PriceLabels[0].Name,
+                            PriceLabelValue = baseProduct.Variants[0].PriceLabels[0].Value,
                         };
                         
                         pList.Add(product);

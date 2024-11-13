@@ -53,13 +53,13 @@ namespace Business.Handlers.TrendyolProductLastSocialProoves.Commands
 
                 var addedTrendyolProductLastSocialProof = new TrendyolProductLastSocialProof
                 {
-                    FetchDate = request.FetchDate,
+                    FetchDate = System.DateTime.Now,
                     ProductId = request.ProductId,
                     FavoriteCount = request.FavoriteCount,
                     OrderCount = request.OrderCount,
                     BasketCount = request.BasketCount,
                     PageViewCount = request.PageViewCount,
-
+                    
                 };
 
                 _trendyolProductLastSocialProofRepository.Add(addedTrendyolProductLastSocialProof);

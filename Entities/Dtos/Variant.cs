@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Entities.Dtos
 {
@@ -30,5 +31,9 @@ namespace Entities.Dtos
 
         [JsonProperty("sameDayShipping")]
         public bool SameDayShipping { get; set; }
+
+        [JsonProperty("priceLabels")]
+        public List<PriceLabel> PriceLabels { get; set; }
+
     }
 }
