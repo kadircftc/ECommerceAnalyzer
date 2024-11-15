@@ -9,6 +9,7 @@ using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
+using Entities.Dtos;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -26,13 +27,15 @@ namespace Business.Handlers.TrendyolProducts.Queries
             private readonly ITrendyolService _trendyolService;
             private readonly ITrendyolProductLastSocialProofRepository _trendyolSocialService;
             private readonly ITrendyolProductRepository _trendyolRepository;
+            private readonly ITrendyolProductImagesRepository _trendyolImagesRepository;
             private readonly IMediator _mediator;
 
-            public GetTrendyolProductFetchQueryHandler(ITrendyolService trendyolService, ITrendyolProductLastSocialProofRepository trendyolSocialService, ITrendyolProductRepository trendyolRepository, IMediator mediator)
+            public GetTrendyolProductFetchQueryHandler(ITrendyolService trendyolService, ITrendyolProductLastSocialProofRepository trendyolSocialService, ITrendyolProductRepository trendyolRepository, ITrendyolProductImagesRepository trendyolImagesRepository, IMediator mediator)
             {
                 _trendyolService = trendyolService;
                 _trendyolSocialService = trendyolSocialService;
                 _trendyolRepository = trendyolRepository;
+                _trendyolImagesRepository = trendyolImagesRepository;
                 _mediator = mediator;
             }
 
@@ -55,18 +58,33 @@ namespace Business.Handlers.TrendyolProducts.Queries
                         _trendyolSocialService.Add(new TrendyolProductLastSocialProof
                         {
                             BasketCount = item.BasketCount,
-                            Index = item.PIndex,
+                            PIndex = item.PIndex,
                             ProductId = item.ProductId,
                             OrderCount = item.OrderCount,
                             FavoriteCount = item.FavoriteCount,
                             PageViewCount = item.PageViewCount, 
-                            FetchDate=item.FetchDate
+                            FetchDate=item.FetchDate,
+                            HasPriceLabels=item.HasPriceLabels,
+                            SortType=item.SortType,
+                            AvarageRating=item.AvarageRating,
+                            BuyingPrice=item.BuyingPrice,   
+                            CommentCount=item.CommentCount,
+                            DiscountPrice=item.DiscountPrice,
+                            FreeCargo = item.FreeCargo,
+                            HasCategoryTopRankings=item.HasCategoryTopRankings,
+                            HasCollectableCoupon=item.HasCollectableCoupon,
+                            HasPromotions=item.HasPromotions,
+                            OriginalPrice=item.OriginalPrice,
+                            RatingTotalCount=item.RatingTotalCount,
+                            SellingPrice =item.SellingPrice,
+                            Tax = item.Tax
                         });
 
                         ayniProductId++;
                     }
                 }
               await _trendyolRepository.SaveChangesAsync() ;
+              await _trendyolSocialService.SaveChangesAsync();
                 return new SuccessDataResult<IEnumerable<TrendyolProduct>>(result,ayniProductId.ToString());
             }
         }

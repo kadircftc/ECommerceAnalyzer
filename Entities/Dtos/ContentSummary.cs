@@ -11,5 +11,7 @@ namespace Entities.Dtos
     {
         [JsonProperty("totalCommentCount")]
         public int CommentCount { get; set; }
+        [JsonProperty("tags")]
+        public List<ContentSummaryTag> Tags { get; set; }
     }
 }

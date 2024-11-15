@@ -12,10 +12,8 @@ namespace Entities.Dtos
         [JsonProperty("name")]
         public string Name { get; set; }
         [JsonProperty("type")]
-
         public int Type { get; set; }
         [JsonProperty("value")]
-
         public string Value { get; set; }
     }
 }

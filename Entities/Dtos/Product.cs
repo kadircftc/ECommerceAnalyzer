@@ -122,6 +122,9 @@ namespace Entities.Dtos
         [JsonProperty("categoryTopRankings")]
         public List<CategoryTopRanking> CategoryTopRankings { get; set; }
 
+        [JsonProperty("priceLabels")]
+        public List<PriceLabel> PriceLabels { get; set; }
+
         [JsonProperty("dsmColor")]
         public string DsmColor { get; set; }
 

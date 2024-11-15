@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Concrete
+namespace Entities.Dtos
 {
-    public class TrendyolProduct : BaseEntity, IEntity
+    public class TrendyolProductDto : BaseEntity
     {
         public int ProductId { get; set; }
         public string CategoryHierarchy { get; set; }
@@ -17,7 +17,7 @@ namespace Entities.Concrete
         public int OrderCount { get; set; }
         public int PageViewCount { get; set; }
         public int BasketCount { get; set; }
-        public int MerchantId { get; set; } 
+        public int MerchantId { get; set; }
         public int CampaignId { get; set; }
         public string ListingId { get; set; }
         public bool SameDayShipping { get; set; }
@@ -27,14 +27,14 @@ namespace Entities.Concrete
         public string ProductName { get; set; }
         public string BrandName { get; set; }
         public int Tax { get; set; }
-        public decimal AvarageRating { get; set; } 
+        public decimal AvarageRating { get; set; }
         public int RatingTotalCount { get; set; }
         public int ProductGroupId { get; set; }
-        public decimal BuyingPrice { get; set; } 
+        public decimal BuyingPrice { get; set; }
         public string Currency { get; set; }
-        public decimal DiscountPrice { get; set; } 
-        public decimal OriginalPrice { get; set; } 
-        public decimal SellingPrice { get; set; } 
+        public decimal DiscountPrice { get; set; }
+        public decimal OriginalPrice { get; set; }
+        public decimal SellingPrice { get; set; }
         public int RushDeliveryDuration { get; set; }
         public int CommentCount { get; set; }
         public bool FreeCargo { get; set; }
@@ -47,6 +47,6 @@ namespace Entities.Concrete
         public bool HasPriceLabels { get; set; }
         public bool HasCollectableCoupon { get; set; }
         public bool HasBadges { get; set; }
+        List<string> Images { get; set; }
     }
-
 }
