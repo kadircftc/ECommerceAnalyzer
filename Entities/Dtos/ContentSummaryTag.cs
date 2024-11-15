@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 
 namespace Entities.Dtos
 {
-    public class CategoryTopRanking
+    public class ContentSummaryTag
     {
         [JsonProperty("name")]
         public string Name { get; set; }
-
-        [JsonProperty("order")]
-        public string Order { get; set; }
-
+        [JsonProperty("count")]
+        public int Count { get; set; }
     }
 }

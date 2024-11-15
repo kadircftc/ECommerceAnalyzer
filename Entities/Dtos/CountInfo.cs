@@ -10,7 +10,7 @@ namespace Entities.Dtos
     public class CountInfo
     {
         [JsonProperty("count")]
-        public int Count { get; set; }
+        public string Count { get; set; }
 
         [JsonProperty("translateIdentifier")]
         public string TranslateIdentifier { get; set; }
