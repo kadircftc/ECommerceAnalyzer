@@ -54,6 +54,7 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
         public DbSet<TrendyolProductImages> TrendyolProductImageses { get; set; }
         public DbSet<TrendyolProductLastSocialProof> TrendyolProductLastSocialProoves { get; set; }
         public DbSet<TrendyolProductTag> TrendyolProductTags { get; set; }
+        public DbSet<TrendyolProductBadge> TrendyolProductBadges { get; set; }
 
         protected IConfiguration Configuration { get; }
 

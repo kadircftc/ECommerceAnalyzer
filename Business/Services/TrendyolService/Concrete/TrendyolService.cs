@@ -18,12 +18,14 @@ namespace Business.Services.TrendyolService.Concrete
         private readonly HttpClient client;
         private readonly ITrendyolProductImagesRepository productImagesRepository;
         private readonly ITrendyolProductTagRepository productTagRepository;
+        private readonly ITrendyolProductBadgeRepository productBadgeRepository;
 
-        public TrendyolService(HttpClient client, ITrendyolProductImagesRepository productImagesRepository, ITrendyolProductTagRepository productTagRepository)
+        public TrendyolService(HttpClient client, ITrendyolProductImagesRepository productImagesRepository, ITrendyolProductTagRepository productTagRepository, ITrendyolProductBadgeRepository productBadgeRepository)
         {
             this.client = client;
             this.productImagesRepository = productImagesRepository;
             this.productTagRepository = productTagRepository;
+            this.productBadgeRepository = productBadgeRepository;
         }
 
         public async Task<IEnumerable<TrendyolProduct>> GetAll()
@@ -143,11 +145,16 @@ namespace Business.Services.TrendyolService.Concrete
                         {
                             productTagRepository.Add(new TrendyolProductTag { MerchantId=baseProduct.MerchantId,FetchDate=DateTime.Now,ProductId=baseProduct.Id,TagCount=itemTag.Count,TagName=itemTag.Name});
                         }
+                        foreach (Badge itemBadge in baseProduct.Badges)
+                        {
+                            productBadgeRepository.Add(new TrendyolProductBadge { MerchantId = baseProduct.MerchantId, FetchDate = DateTime.Now, ProductId = baseProduct.Id,Title=itemBadge.Title,Type= itemBadge.Type });
+                        }
 
                         pList.Add(product);
                         index++;
                     }
                 }
+                await productBadgeRepository.SaveChangesAsync();
                 await productImagesRepository.SaveChangesAsync();
                 await productTagRepository.SaveChangesAsync();
             }
