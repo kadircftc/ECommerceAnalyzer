@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Entities.Concrete;
 using System.Collections.Generic;
+using Entities.Dtos;
 
 namespace WebAPI.Controllers
 {
@@ -56,7 +57,26 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
-
+        ///<summary>
+        ///List TrendyolProducts
+        ///</summary>
+        ///<remarks>TrendyolProducts</remarks>
+        ///<return>List TrendyolProducts</return>
+        ///<response code="200"></response>
+        [Produces("application/json", "text/plain")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<TrendyolProductTransferDto>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [HttpGet("gettrendyoltroductdetailedanalyzedproducts")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetTrendyolProductDetailedAnalyzedProducts()
+        {
+            var result = await Mediator.Send(new GetTrendyolProductDetailedAnalyzeQuery());
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
         ///<summary>
         ///It brings the details according to its id.
         ///</summary>

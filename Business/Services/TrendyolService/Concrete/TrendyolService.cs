@@ -128,27 +128,37 @@ namespace Business.Services.TrendyolService.Concrete
 
                         if (isThereTrendyolProductImagesRecord == false)
                         {
-
-                            foreach (string itemImages in baseProduct.Images)
+                            if (baseProduct.Images != null || baseProduct.Images.Count() == 0)
                             {
-                                productImagesRepository.Add(new TrendyolProductImages
+                                foreach (string itemImages in baseProduct.Images)
                                 {
-                                    ProductId = baseProduct.Id,
-                                    ImgUrl = itemImages,
-                                    FetchDate = product.FetchDate,
-                                });
+                                    productImagesRepository.Add(new TrendyolProductImages
+                                    {
+                                        ProductId = baseProduct.Id,
+                                        ImgUrl = itemImages,
+                                        FetchDate = product.FetchDate,
+                                    });
+                                }
                             }
+                        
 
                         }
 
-                        foreach (ContentSummaryTag itemTag in productReviewsDetailedModel.Result.ContentSummary.Tags)
-                        {
-                            productTagRepository.Add(new TrendyolProductTag { MerchantId=baseProduct.MerchantId,FetchDate=DateTime.Now,ProductId=baseProduct.Id,TagCount=itemTag.Count,TagName=itemTag.Name});
+                        if (productReviewsDetailedModel.Result.ContentSummary.Tags != null || productReviewsDetailedModel.Result.ContentSummary.Tags.Count() == 0) {
+                            foreach (ContentSummaryTag itemTag in productReviewsDetailedModel.Result.ContentSummary.Tags)
+                            {
+                                productTagRepository.Add(new TrendyolProductTag { MerchantId = baseProduct.MerchantId, FetchDate = DateTime.Now, ProductId = baseProduct.Id, TagCount = itemTag.Count, TagName = itemTag.Name });
+                            }
                         }
-                        foreach (Badge itemBadge in baseProduct.Badges)
+
+                        if(baseProduct.Badges != null || baseProduct.Badges.Count() == 0)
                         {
-                            productBadgeRepository.Add(new TrendyolProductBadge { MerchantId = baseProduct.MerchantId, FetchDate = DateTime.Now, ProductId = baseProduct.Id,Title=itemBadge.Title,Type= itemBadge.Type });
+                            foreach (Badge itemBadge in baseProduct.Badges)
+                            {
+                                productBadgeRepository.Add(new TrendyolProductBadge { MerchantId = baseProduct.MerchantId, FetchDate = DateTime.Now, ProductId = baseProduct.Id, Title = itemBadge.Title, Type = itemBadge.Type });
+                            }
                         }
+                       
 
                         pList.Add(product);
                         index++;
