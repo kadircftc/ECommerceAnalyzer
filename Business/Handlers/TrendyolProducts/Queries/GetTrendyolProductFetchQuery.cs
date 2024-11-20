@@ -85,7 +85,7 @@ namespace Business.Handlers.TrendyolProducts.Queries
                 }
               await _trendyolRepository.SaveChangesAsync() ;
               await _trendyolSocialService.SaveChangesAsync();
-                return new SuccessDataResult<IEnumerable<TrendyolProduct>>(result,ayniProductId.ToString());
+                return new SuccessDataResult<IEnumerable<TrendyolProduct>>(result,"Same Product Count->"+ayniProductId.ToString());
             }
         }
     }

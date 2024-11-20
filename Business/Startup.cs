@@ -92,6 +92,7 @@ namespace Business
         public void ConfigureDevelopmentServices(IServiceCollection services)
         {
             ConfigureServices(services);
+            services.AddTransient<ITrendyolProductBadgeRepository, TrendyolProductBadgeRepository>();
             services.AddTransient<ITrendyolProductTagRepository, TrendyolProductTagRepository>();
             services.AddTransient<ITrendyolProductLastSocialProofRepository, TrendyolProductLastSocialProofRepository>();
             services.AddTransient<ITrendyolProductImagesRepository, TrendyolProductImagesRepository>();
@@ -119,6 +120,7 @@ namespace Business
         public void ConfigureStagingServices(IServiceCollection services)
         {
             ConfigureServices(services);
+            services.AddTransient<ITrendyolProductBadgeRepository, TrendyolProductBadgeRepository>();
             services.AddHttpClient<ITrendyolService, TrendyolService>();
             services.AddTransient<ITrendyolProductTagRepository, TrendyolProductTagRepository>();
             services.AddTransient<ITrendyolProductLastSocialProofRepository, TrendyolProductLastSocialProofRepository>();
@@ -147,6 +149,7 @@ namespace Business
         public void ConfigureProductionServices(IServiceCollection services)
         {
             ConfigureServices(services);
+            services.AddTransient<ITrendyolProductBadgeRepository, TrendyolProductBadgeRepository>();
             services.AddTransient<ITrendyolProductTagRepository, TrendyolProductTagRepository>();
             services.AddTransient<ITrendyolProductLastSocialProofRepository, TrendyolProductLastSocialProofRepository>();
             services.AddTransient<ITrendyolProductImagesRepository, TrendyolProductImagesRepository>();
